@@ -10,7 +10,7 @@
             <div class="mt-3">
                 <p class="m-0">Countries:</p>
                 <ul>
-                    @for (country of retrievedCountries; track country.countryCode) {
+                    @for (country of countryService.countries; track country.countryCode) {
                     <li><a [routerLink]="['country', country.countryCode]" [queryParams]="{name: country.officialName}">{{ country.commonName }}</a></li>
                     }
                 </ul>
@@ -19,9 +19,9 @@
         <div class="col-auto">
             <div class="mt-3 ms-4">
                 <button (click)="showData()" class="btn btn-primary">Show data</button>
-                <div *ngIf="showDetails">
+                <div *ngIf="countryService.showRandomCountries">
                     <ol>
-                        @for (country of threeRandomCountries; track country.countryName) {
+                        @for (country of countryService.threeRandomCountries; track country.countryName) {
                             <li>
                                 {{country.countryName}}
                                 <ul>

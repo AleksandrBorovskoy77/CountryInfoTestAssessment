@@ -17,18 +17,15 @@ export class HomeComponent implements OnDestroy {
 
     private destroy$ = new Subject<void>();
     inputData: string = '';
-    retrievedCountries: CountryInfo[] = [];
-    threeRandomCountries: CountryHoliday[] = [];
-    showDetails: boolean = false;
 
-    constructor(private countryService: CountryService) {
+    constructor(public countryService: CountryService) {
         
     }
 
     findCountry(): void {
         this.countryService.getCountryByCode(this.inputData).pipe(takeUntil(this.destroy$)).subscribe({
             next: (country) => {
-                this.retrievedCountries?.push(country);
+                this.countryService.addCountry(country);
             }
         })
 
@@ -43,15 +40,15 @@ export class HomeComponent implements OnDestroy {
                 )
             ))
         )).subscribe(result => {
-            this.threeRandomCountries = result
+            this.countryService.threeRandomCountries = result
                 .map(res => ({countryName: res.country.name, holidayName: res.holiday.name, date: res.holiday.date}));
             
-            this.showDetails = true;
+            this.countryService.showRandomCountries = true;
         })
     }
 
     deleteAll(): void {
-        this.retrievedCountries = [];
+        this.countryService.deleteAllContries();
     }
 
     ngOnDestroy(): void {
