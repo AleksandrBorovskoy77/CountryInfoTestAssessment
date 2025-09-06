@@ -1,3 +1,7 @@
+# Application's features
+
+Enter a country code and press search to get a country. The retrieved country is added to list. Clear button clears the list of countries. Each country on list can be clicked to open a country page. Show data button shows data for 3 random countries and display their next holiday. Once any country from list is clicked, the country page opened. It shows the country name and the list of holidays of current year. The buttons - and + can be used to change the year. The holidays change accordingly.
+
 # CountryInfoTestTask
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
